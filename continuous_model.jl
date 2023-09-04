@@ -116,7 +116,7 @@ function computeOptimalBeta(agents, strategic)
     return boptimize!(opt)
 end
 
-function generateObservations(agents, β, strategic)
+function generateObservations(agents, β, strategic::Bool)
     n = length(agents)
     x = [reportX(agents[i], β, strategic) for i in 1:n]
     δ = [allocation(x[i], β) for i in 1:n]

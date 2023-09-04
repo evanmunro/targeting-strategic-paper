@@ -5,7 +5,7 @@ This repository contains Julia code for the simulation and empirical sections of
 The replication requires a working Julia installation as well as the following packages:
 
 ```
-dependencies = ["BayesianOptimization", "GaussianProcesses", "StatsBase",
+dependencies = ["Revise", "BayesianOptimization", "GaussianProcesses", "StatsBase",
                 "Random", "Distributions", "Optim", "Plots", "Statistics", "CategoricalArrays",
                 "DataFrames", "GLM", "CSV", "Statistics"]
 Pkg.add(dependencies)

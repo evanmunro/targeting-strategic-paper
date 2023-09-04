@@ -45,7 +45,7 @@ function reportX(type::PrefType, δ, strategic)
 end
 
 
-function generateObservations(agents, δ, strategic)
+function generateObservationsSim(agents, δ, strategic)
     n = length(agents)
     x = [reportX(agents[i], δ, strategic) for i in 1:n]
     δs = [δ[x[i]+1] for i in 1:n]
@@ -75,7 +75,7 @@ end
 function lineSearch(n, agentGen)
     agents = agentGen(n)
     function objective(π)
-        data = generateObservations(agents, [0.0, π], true)
+        data = generateObservationsSim(agents, [0.0, π], true)
         return -1 * mean(data.y)
     end
 
@@ -91,16 +91,16 @@ function computeOptimalPi(strategic, n, agentGen)
     println("Optimal: ", pistar)
     function objective(β)
         agents = agentGen(n)
-        data = generateObservations(agents, β, strategic)
+        data = generateObservationsSim(agents, β, strategic)
 
         #compare to optimal value computed in advance
-        dataopt = generateObservations(agents, [0.0, pistar], strategic)
+        dataopt = generateObservationsSim(agents, [0.0, pistar], strategic)
         push!(opt_for_regret, mean(dataopt.y))
         push!(actual_opt, mean(data.y))
         return mean(data.y)
     end
     agents = agentGen(n)
-    data = generateObservations(agents, [0.5, 0.5], strategic)
+    data = generateObservationsSim(agents, [0.5, 0.5], strategic)
     println(length(data.y))
     μ = mean(data.y)
     σ2 = var(data.y)/length(data.y)

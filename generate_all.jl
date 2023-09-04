@@ -1,7 +1,8 @@
+using Revise
 includet("cutoff_figure.jl")
 includet("semi_synthetic.jl")
 includet("continuous_model.jl")
-includet("simulate_regret.jl")
+includet("regret.jl")
 
 #Figure 1
 Random.seed!(1)
